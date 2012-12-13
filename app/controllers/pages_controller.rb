@@ -23,6 +23,7 @@ class PagesController < ApplicationController
     end
     if @task.valid?
         flash[:success] = "Task successfully added!"
+        Notifications.new_task(@task).deliver
     end
    
     redirect_to home_path
