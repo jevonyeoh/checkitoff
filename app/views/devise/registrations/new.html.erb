@@ -1,0 +1,51 @@
+<div class="row">
+	<div class="span10 offset1">
+
+		<h2>Sign up</h2>
+		
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), 
+				html: {class: "form-horizontal"}) do |f| %>
+		  <%= devise_error_messages! %>
+		
+			  <div class="control-group" label="email" id="email">
+    			<%= f.label "First name", class: 'control-label' %>
+    			<div class="controls">
+    				<%= f.text_field :firstname %>
+			  	</div>
+  			  </div>
+  			  
+			  <div class="control-group" label="email" id="email">
+    			<%= f.label "Last name", class: 'control-label' %>
+    			<div class="controls">
+    				<%= f.text_field :lastname %>
+			  	</div>
+  			  </div>
+  		
+			  <div class="control-group" label="email" id="email">
+    			<%= f.label :email, class: 'control-label' %>
+    			<div class="controls">
+    				<%= f.email_field :email %>
+			  	</div>
+  			  </div>
+  			  
+			  <div class="control-group" label="email" id="email">
+    			<%= f.label "Password", class: 'control-label' %>
+    			<div class="controls">
+    				<%= f.password_field :password %>
+			  	</div>
+  			  </div>
+  			  
+  			  <div class="control-group" label="email" id="email">
+    			<%= f.label :password_confirmation, class: 'control-label' %>
+    			<div class="controls">
+    				<%= f.password_field :password_confirmation %>
+			  	</div>
+  			  </div>
+		
+	    	  <div class="form-actions" label="Sign up" id="Sign up"><%= f.submit "Sign Up" %></div>
+
+		<% end %>
+		
+		<%= render "devise/shared/links" %>
+   </div>
+</div>

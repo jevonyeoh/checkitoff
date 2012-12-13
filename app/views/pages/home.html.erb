@@ -1,0 +1,65 @@
+
+<div class="row">
+	<div class="span7 offset1">
+		<% if !user_signed_in? %>
+			<h2>Welcome!</h2>
+		<% end %>
+		<% if user_signed_in? %>
+			<h2>Welcome, <%= current_user.firstname %>!</h2>
+		<% end %>
+		
+		
+	    <% if !flash[:error].nil? %>
+		   <div class="alert alert-error">
+		      <button type="button" class="close" data-dismiss="alert">×</button>
+		      <strong><%= flash[:error] %></strong>
+		   </div>
+	    <% end %>
+		
+		Thanks so much for visiting checkItOff - check off all your tasks now!<br>
+		Stop procrastinating!<br>
+	    checkItOff is still in its early stages of development so stay tuned for more updates in the future!<br>
+		<br>
+
+		
+		<% if !user_signed_in? %>
+			If you have not done so, register for a new account <u><a href="users/sign_up">here</u></a>.<br> 
+			Else, <u><a href="users/sign_in">login</u></a> now to start checking off those tasks!<br>
+		<% end %>
+		<% if user_signed_in? %>
+		
+			<% if current_user.tasks.notdone.blank? %>
+				<p>Oh, it looks like you have no tasks to do!<br>
+				<a href="tasks/new">Click here to add a new task</a> or quickly add stuff to do on the right!</p>
+			<% else %>
+				Hurry up and finish these tasks now!<br><br>
+				
+				<%= form_tag("/pages/complete/", :method => "post") do %>
+					<ul style="list-style-type:none;">
+					<% @tasks.each do |t| %> 
+					     <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.name %>  </li>
+					<%end%>
+					</ul><br>
+					<%= submit_tag("Check it off!", :class=>"btn btn-success") %>
+				<%end %>
+				
+				
+				
+			<% end %>
+		<% end %>
+		<br>
+		<br>
+
+	</div>
+	
+	<div class="span3 offset1">
+		<% if user_signed_in? %>
+			<h4>quick add</h4>
+			
+			<%= form_tag("/pages/add", :method=>"post") do %>
+			  <%= text_field_tag(:todo_name) %>
+			  <%= submit_tag("Add Task", :class=>"btn") %>
+			<% end %>
+		<% end %>
+	</div>
+</div>	

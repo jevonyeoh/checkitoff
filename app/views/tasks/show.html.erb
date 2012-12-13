@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="span10 offset1">
+		<p id="notice"><%= notice %></p>
+		
+		<p>
+		  <b>Name:</b>
+		  <%= @task.name %>
+		</p>
+		
+		<p>
+		  <b>Description:</b>
+		  <%= @task.description %>
+		</p>
+		
+		<p>
+		  <b>Due date:</b>
+		  <%= @task.duedate %>
+		</p>
+		
+		<p>
+		  <b>Completed:</b>
+		  <%= @task.completed %>
+		</p>
+		
+		
+		<%= link_to 'Edit', edit_task_path(@task) %> |
+		<%= link_to 'Back', tasks_path %>
+	</div>
+</div>

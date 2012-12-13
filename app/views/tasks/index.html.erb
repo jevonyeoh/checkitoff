@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="span7 offset1">
+		<h1>tasks</h1>
+		
+		<table class="table table-striped">
+		  <tr>
+		  	<th><center></th></center>
+		    <th><center>Task</th></center>
+		    <th><center>Description</th></center>
+		    <th><center>Due</th></center>
+		  </tr>
+		<%= form_tag("/tasks/complete/", :method => "post") do %>
+			<% @tasks.each do |task| %>
+			  <tr>
+			    <td><center>
+			    <% if task.completed == true %>
+					<%= check_box_tag  "todos_checkbox[]",task.id %>  
+			    <% else %>
+				    <%= check_box_tag  "todos_checkbox[]",task.id %>
+				<% end %></center> </td>
+		  	  <td><center><%= link_to task.name, edit_task_path(task) %></td></center>
+		      <td><center><%= task.description %></td></center>
+		      <td><center><%= task.duedate %></td></center>
+		      </tr>
+			<% end %>
+			</table>
+			<% if !@tasks.empty? %>
+				<%= submit_tag("Check it off!", :class=>"btn btn-success") %>
+			<% end %>
+		<% end %>
+
+  </div>
+  
+  <div class="span3 offset1">	
+	<h4>quick add</h4>
+	<%= form_tag("/tasks/add", :method=>"post") do %>
+	  <%= text_field_tag(:todo_name) %>
+	  <%= submit_tag("Add Task", :class=>"btn") %>
+	<% end %>
+  
+  <% if !flash[:error].nil? %>
+	 <div class="alert alert-error">
+	    <button type="button" class="close" data-dismiss="alert">×</button>
+	    <strong><%= flash[:error] %></strong>
+	 </div>
+  <% end %>
+  
+  <% if !flash[:success].nil? %>
+	 <div class="alert alert-success">
+	    <button type="button" class="close" data-dismiss="alert">×</button>
+	    <strong><%= flash[:success] %></strong>
+	 </div>
+  <% end %>
+  
+  	<br>
+  	
+	<h4>full add</h4>
+	<%= link_to '+ New Task', new_task_path %><br><br>
+	
+
+  </div>
+  
+</div>

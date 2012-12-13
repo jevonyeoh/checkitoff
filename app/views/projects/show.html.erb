@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="span10 offset1">
+		<p id="notice"><%= notice %></p>
+		
+		<p>
+		  <b>Task:</b>
+		  <%#= @project.task %>
+		</p>
+		
+		<p>
+		  <b>Pname:</b>
+		  <%= @project.pname %>
+		</p>
+		
+		
+		<%= link_to 'Edit', edit_project_path(@project) %> |
+		<%= link_to 'Back', projects_path %>
+	</div>
+</div>
